@@ -1,0 +1,396 @@
+* {
+box-sizing: border-box;
+transition: .5s ease-in-out;
+}
+a{
+text-decoration:none;
+
+}
+html, body {                                              /* front page text*/
+  background-color: #ffffff;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'calibri' !important;
+  font-weight : bold;
+}
+html h1, body h1 {
+  font-size: 25px;
+  font-weight: 200;
+  color: white;
+  line-height: 30px;
+  margin-bottom: 10px;
+}
+html h2, body h2 {
+  font-size: 15px;
+  color: #6b0500;
+}
+
+#wrapper {
+  opacity: 0;
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+#wrapper.loaded {                                         /* main transaction */
+  opacity: 1;
+  transition: 2.5s ease-in-out;
+}
+#wrapper #content {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#card {
+  height: 500px;
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  perspective: 600px;
+}
+#card #front, #card #back {                                /* small background-border */
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+#card #front {
+  transform: rotateY(0deg);
+  overflow: hidden;
+  z-index: 1;
+}
+#card #front .arrow {                                     /* front arrow color */
+  position: absolute;
+ /*  height: 262px; */
+  line-height: 50px;
+  font-size: 30px;
+  z-index: 10;
+  bottom: 10px;
+  right: 41px;
+  color: #00c0f1;
+  animation: arrowWiggle 1s ease-in-out infinite;
+}
+.arrow1 {                                                 /* front arrow color */
+  position: absolute;
+ /*  height: 262px; */
+  line-height: 50px;
+  font-size: 30px;
+  z-index: 10;
+  bottom: 10px;
+  right: 41px;
+  color: #00c0f1;
+  animation: arrowWiggle 1s ease-in-out infinite;
+}
+
+#card #front #avatar {
+  width: 145px;
+  height: 145px;
+  top: 47%;
+  left: 47%;
+  margin: -77px 0 0 -57px;
+  border-radius: 0%;
+  /*box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.8), 0 4px 5px rgba(107, 5, 0, 0.6), 0 0 50px 50px rgba(255, 255, 255, 0.25);*/
+  /* background-image: url(3.html); */
+  background-size: contain;
+  position: absolute;
+  z-index: 1;
+  background-repeat:no-repeat;
+}
+#card #front #info-box {                                 /* front small background */
+  height: 100%;
+  width: 300px;
+  position: absolute;
+  display: table;
+  left: 0;
+  bottom: 0;
+  /* -webkit-filter: blur(10px); */
+  background-image: url(blue-white.png);
+  padding: 21px 43px 0px 49px;
+  background-size:cover;
+}
+#card #front #social-bar {                             /* front page line position */
+  height: 135px;
+  width: 100%;
+  position: absolute;
+  bottom: 40%;
+  left: 0;
+  line-height: 50px;
+  font-size: 21px;
+  text-align: center;
+}
+#card #front #social-bar a {
+  display: inline-block;
+  color: black;                                         /* front page line color */
+  text-decoration: none;
+  padding: 8px;
+  line-height: 17px;
+  border-radius: 5px;
+}
+#card #front #social-bar a:hover {                      /* save contact wali line no color */
+  color: red;
+  background: rgba(255, 255, 255, 0.3);
+  transition: .25s ease-in-out  ;
+}
+#card #back {
+  transform: rotateY(180deg);                           /* back background */
+  background-image: url(black-hand.jpg);
+  display: table;
+  z-index: 2;
+  font-size: 13px;
+  line-height: 20px;
+  padding: 17px 0px 0px 40px;
+  background-size:cover;
+}
+#card #back .back-info {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.back-info{
+  margin-top:92px;
+  padding:8px;
+  line-height:25px;
+}
+.back-info-back{                                        /* back points color */
+  margin-top:41%;
+  padding:0px;
+  line-height:27px;
+  color: #261c4e;
+}
+.back-info-back a{                                      /* back line color */
+  color: #00c0f1;
+  letter-spacing: .6px;
+}
+.back-info-back a:hover {                                      /* front line backhround */
+    background-color: unset !important;
+    transform: scale(1.1);}
+
+#card #back #social-bar {
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  line-height: 50px;
+  font-size: 23px;
+  text-align: center;
+}
+#card #back #social-bar a {
+  display: inline-block;
+  line-height: 18px;
+  color: #951009;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+#card #back #social-bar a:hover {
+  color: #450300;
+  background: rgba(223, 74, 66, 0.5);
+  transition: .25s ease-in-out;
+}
+#card .info {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+  text-align: center;
+}
+#card.flip #front {                                         /*card flip*/
+  transform: rotateY(180deg);
+}
+#card.flip #back {
+  transform: rotateY(360deg);
+}
+
+#background {
+  position: fixed;
+  background-color: black;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+#background #background-image {                            /* big back ground image */
+  height: calc(100% + 60px);
+  width: calc(100% + 60px);
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  -webkit-filter: blur(10px);
+  background-image: url(black-red.jpg);
+  background-color: #fff;
+  background-size: cover;
+}
+
+@keyframes arrowWiggle {
+  0% {
+    right: 31px;
+  }
+  50% {
+    right: 13px;
+  }
+  100% {
+    right: 31px;
+  }
+}
+.ffa{                                           /* front icon style upper icone */
+    color:#2a1e4f;
+}
+.back-info  i{                                  /* front icon style */
+  color:#00c0f1;
+  font-size : 17px;
+
+}
+.back-info a{
+  color:#2a1e4f;
+
+}
+.bfa{
+  color:#ff6100;
+}
+
+.save_contact {
+    margin-top: 0%;
+}
+.save_contact a:hover {
+    background: none !important;
+}
+.save_contact .fa {
+    color: #00c0f1 !important;
+}
+.save_contact a {
+    font-size: 14px !important;
+    color: #fff;
+}
+
+.share_this_whats {
+    margin-top: 4%;
+}
+.share_this_whats a:hover {
+    background: none !important;
+}
+ .share_this_whats .fa {                              /* share this whatsapp icon */
+    color: #008c05 !important;
+}
+.share_this_whats a {
+    font-size: 15px !important;
+    color: black !important;                            /* share this whatsapp line color */
+}
+.add_info a:hover {                                      /* front line backhround */
+    background-color: unset !important;
+    transform: scale(1.1) ;
+}
+.add_info a{
+   font-size: 14px;
+      letter-spacing: 1px;
+
+}
+
+.add_info {
+    margin-top: -31%;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.add_info .fa{
+    float: left;
+    padding-left: 15%;
+    padding-top: 7px;
+}
+.front_add{
+  width: 88%;
+  float: right;
+  padding-left: 0px;
+}
+div#social-bar .fa:hover {                              /*social bar icone click color*/
+    color: #00c0f1;
+}
+.add_info .fa:hover {
+    color: #2a1e4f !important;
+    cursor: pointer;
+}
+.add_info p{
+    margin-top: -6px;
+    margin-bottom: -9px;
+}
+.share_this_whats a:hover{
+  color: red !important;                                /* shre this whatsapp line click color */
+}
+.add_info a:hover{
+  color: #00c0f1 !important;                            /* front line click color */
+}
+.click_flip{
+    margin-top: -19%;
+    float: right;
+    margin-right: 10%;
+}
+.click_flip .fa{
+    color:#00c0f1;
+}
+.click_flip .fa:hover{
+    color:#00c0f1;
+    font-size: 25px;
+    cursor: pointer;
+}
+a.more-info {                                           /* arrow color */
+    color: #00c0f1;
+}
+.fa-whatsapp:hover{                                     /* whatsapp icon click color */
+  color:#2a1e4f !important;
+}
+p.top_san_mob a {                                       /*front contact color */
+    font-size: 13px;
+    color: #000;
+    /* margin-top: -12px; */
+}
+p.top_san_name a {
+    font-size: 13px;                                    /*front contact name color */
+    color: darkblue;
+    /* margin-top: -12px; */
+}
+p.top_san_name a:hover{
+
+  color:#000;
+}
+p.top_san_mob a:hover{
+  color:#00c0f1;
+}
+p.top_ravi_mob a {
+    font-size: 13px;                                    /*back contact color */
+    color: #000;
+    /* margin-top: -12px; */
+}
+p.top_ravi_mob a:hover{                                 /*back contact name color */
+  color:#00c0f1;
+}
+.social-bar-back a {                                    /* back last line colot */
+    font-size: 16px;
+    color: #fff !important;
+}
+.social-bar-back {
+    margin: 11% 0% 0% 6%;
+}
+.social-bar-back .fa{                                   /* back last line icon color*/
+    color: #fff;
+}
+
+@font-face {
+  font-family: "calibri";
+  src: url("Calibri.ttf");
+}
+.facebook{
+  transition: transform .3s;
+  background-color:transperent;
+   backface-visibility: hidden;
+}
+.facebook:hover{
+  transform: scale(1.5) rotate(360deg)  ;
+
+}
+.tra:hover{
+  transform: scale(1.1) ;
+
+}
